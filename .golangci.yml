@@ -1,0 +1,52 @@
+version: "2"
+
+linters:
+
+  default: all
+
+  disable:
+    - wsl
+    - wsl_v5
+    - ireturn
+    - nlreturn
+    - revive
+    - exhaustruct
+    - wrapcheck
+    - mnd
+    - gosec
+
+  settings:
+
+    depguard:
+      rules:
+        main:
+          files:
+            - $all
+          allow:
+            - $gostd
+            - github.com/ollama/ollama/api
+            - github.com/takanoriyanagitani/go-txt2llm2png
+          deny:
+            - pkg: unsafe
+
+    nolintlint:
+      require-specific: true
+      require-explanation: true
+      allow-unused: false
+      allow-no-explanation:
+        - gochecknoglobals
+        - nilerr
+
+    govet:
+      enable-all: true
+      disable:
+      - fieldalignment
+
+    staticcheck:
+      checks:
+      - all
+      - -QF1011
+      - -QF1008
+      - -ST1017
+      - -ST1023
+      - -ST1000
